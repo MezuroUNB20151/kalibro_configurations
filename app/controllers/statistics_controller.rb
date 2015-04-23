@@ -5,8 +5,9 @@ class StatisticsController < ApplicationController
   	count_metric_name = Hash.new(0)
   	metric_configuration.each { |x|  count_metric_name[x.metric_snapshot.name]+=1 }
 
+	count_metric_name.merge!("total_value" => metric_configuration.count )
     respond_to do |format|
-     	format.json {render json: {count_metric_name: count_metric_name}
+        format.json {render json: {count_metric_name: count_metric_name}}
      end
   end
 
